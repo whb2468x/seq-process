@@ -1,0 +1,10 @@
+# Fallback pip dependencies. Prefer managing this project with conda:
+#   conda env update -n bio -f environment.yml
+
+fastapi>=0.110
+uvicorn[standard]>=0.27
+biopython>=1.83
+pandas>=2.0
+numpy>=1.24
+python-multipart>=0.0.9
+requests>=2.31

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Conda / virtual environments
+.env
+.venv/
+venv/
+env/
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+backend/data/uploads/
+backend/data/results/
+backend/data/blast_db/
+backend/results/
+data/uploads/
+data/results/
+data/blast_db/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local agent/session metadata
+.agents/
+.codex/

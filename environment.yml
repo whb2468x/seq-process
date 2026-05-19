@@ -1,0 +1,15 @@
+name: bio
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.9
+  - fastapi
+  - uvicorn
+  - biopython
+  - pandas
+  - numpy
+  - python-multipart
+  - requests
+  - nodejs=20
+  - blast
