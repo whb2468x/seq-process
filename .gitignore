@@ -24,13 +24,13 @@ yarn-debug.log*
 yarn-error.log*
 
 # Runtime data
-backend/data/uploads/
-backend/data/results/
-backend/data/blast_db/
+backend/data/uploads/*
+backend/data/results/*
+backend/data/blast_db/*
+!backend/data/uploads/.gitkeep
+!backend/data/results/.gitkeep
 backend/results/
-data/uploads/
-data/results/
-data/blast_db/
+data/
 
 # OS / editor
 .DS_Store
@@ -38,6 +38,7 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Local agent/session metadata
+# AI / session metadata
 .agents/
 .codex/
+.codebuddy/

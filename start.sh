@@ -51,7 +51,7 @@ fi
 # 启动后端服务
 echo "Starting backend service..."
 cd "$SCRIPT_DIR/backend" || exit 1
-python main.py &
+conda run -n bio --no-capture-output python main.py &
 BACKEND_PID=$!
 
 # 等待后端启动
@@ -62,9 +62,9 @@ echo "Starting frontend service..."
 cd "$SCRIPT_DIR/frontend" || exit 1
 if [[ ! -d node_modules ]]; then
     echo "Frontend dependencies not found. Running npm install..."
-    npm install
+    conda run -n bio npm install
 fi
-HOST=127.0.0.1 BROWSER=none DANGEROUSLY_DISABLE_HOST_CHECK=true npm start &
+HOST=127.0.0.1 BROWSER=none DANGEROUSLY_DISABLE_HOST_CHECK=true conda run -n bio --no-capture-output npm start &
 FRONTEND_PID=$!
 
 echo "Services started!"

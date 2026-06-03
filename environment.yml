@@ -13,3 +13,5 @@ dependencies:
   - requests
   - nodejs=20
   - blast
+  - openpyxl
+  - matplotlib
