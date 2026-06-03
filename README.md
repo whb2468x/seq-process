@@ -36,6 +36,7 @@ seq-process/
 │   └── requirements.txt     # pip 备用依赖清单
 ├── frontend/
 │   ├── public/
+│   │   └── index.html
 │   ├── src/
 │   │   ├── App.js           # React 主界面
 │   │   ├── App.css
@@ -43,13 +44,17 @@ seq-process/
 │   │   └── index.css
 │   ├── package.json
 │   └── package-lock.json
+├── tests/
+│   ├── bro.txt              # 测试用序列文件
+│   ├── test_core.py         # 不依赖网络的核心单元测试
+│   ├── test_backend_task.py # BLAST 后台任务测试
+│   ├── test_blast.py        # NCBI 远程 BLAST 连通性测试
+│   └── test_runner.py       # 全流程端到端测试
 ├── activate_bio.sh          # 创建或激活 bio conda 环境
-├── auto_activate_bio.sh     # 可选的 shell 自动激活辅助脚本
 ├── environment.yml          # Conda 环境定义
 ├── start.sh                 # 同时启动后端和前端
-├── test_core.py             # 不依赖网络的核心单元测试
-├── test_backend_task.py     # BLAST 后台任务测试
-├── test_blast.py            # NCBI 远程 BLAST 连通性测试
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
@@ -242,11 +247,34 @@ Pairwise alignment 使用 Biopython `PairwiseAligner`，默认评分：
 
 ## 测试和验证
 
-不依赖网络的核心测试：
+所有测试脚本位于 `tests/` 目录：
+
+不依赖网络的核心单元测试：
 
 ```bash
 conda activate bio
-python -m unittest test_core.py
+python -m unittest tests/test_core.py
+```
+
+BLAST 后台任务测试：
+
+```bash
+conda activate bio
+python tests/test_backend_task.py
+```
+
+远程 BLAST 连通性测试（会访问 NCBI，耗时和成功率取决于网络和 NCBI 服务状态）：
+
+```bash
+conda activate bio
+python tests/test_blast.py
+```
+
+全流程端到端测试（需要后端服务运行在 `localhost:8000`）：
+
+```bash
+conda activate bio
+python tests/test_runner.py
 ```
 
 前端生产构建：
@@ -263,13 +291,6 @@ npm run build
 conda activate bio
 uvicorn backend.main:app --host 127.0.0.1 --port 8000
 curl http://127.0.0.1:8000/
-```
-
-远程 BLAST 连通性测试会访问 NCBI，耗时和成功率取决于网络和 NCBI 服务状态：
-
-```bash
-conda activate bio
-python test_blast.py
 ```
 
 ## NCBI BLAST 注意事项
